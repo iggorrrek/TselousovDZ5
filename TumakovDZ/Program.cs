@@ -14,22 +14,18 @@ namespace TumakovDZ
         }
         static void Task1()
         {
-            Console.WriteLine("Необходимо передать имя файла в качестве аргумента.");
+            Console.WriteLine("Задание номер 1\n");
+            Console.WriteLine("Введите имя файла:(тестовый файл(txt(расширение писать не надо))(файл из репозитория называется 'papa' или 'nepapa'))");
             string filename = Console.ReadLine();
             string fileName = filename + ".txt";
+            string papka = @"C:\Users\Asus\source\repos\TselousovDZ5"; //сюда допишете свою папку чтобы все красиво работало
+            string papkafile = Path.Combine(papka, fileName);
             try
             {
-                // Чтение содержимого файла в строку
-                string content = File.ReadAllText(fileName);
-
-                // Преобразование строки в массив символов
+                string content = File.ReadAllText(papkafile);
                 char[] characters = content.ToCharArray();
-
-                // Вызов метода для подсчета количества гласных и согласных букв
                 int vowelsCount, consonantsCount;
-                CountVowelsAndConsonants(characters, out vowelsCount, out consonantsCount);
-
-                // Вывод результатов
+                SchetchikBykv(characters, out vowelsCount, out consonantsCount);
                 Console.WriteLine($"Количество гласных букв: {vowelsCount}");
                 Console.WriteLine($"Количество согласных букв: {consonantsCount}");
             }
@@ -39,7 +35,7 @@ namespace TumakovDZ
             }
             Console.ReadKey();
         }
-        static void CountVowelsAndConsonants(char[] characters, out int vowelsCount, out int consonantsCount)
+        static void SchetchikBykv(char[] characters, out int vowelsCount, out int consonantsCount)
         {
             vowelsCount = 0;
             consonantsCount = 0;
@@ -54,12 +50,10 @@ namespace TumakovDZ
         }
         static bool IsConsonant(char c)
         {
-            // Регулярное выражение для проверки, является ли символ согласной буквой
             return Regex.IsMatch(c.ToString(), "[bcdfghjklmnpqrstvwxyzBCDFGHJKLMNPQRSTVWXYZ]", RegexOptions.IgnoreCase);
         }
         static bool IsVowel(char c)
         {
-            // Регулярное выражение для проверки, является ли символ гласной буквой
             return Regex.IsMatch(c.ToString(), "[aeiouyAEIOUY]", RegexOptions.IgnoreCase);
         }
         
